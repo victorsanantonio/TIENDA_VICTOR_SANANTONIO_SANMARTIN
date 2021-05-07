@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS `tienda_victor_sanantonio_sanmartin`; 
 CREATE DATABASE `tienda_victor_sanantonio_sanmartin` CHARACTER SET utf8mb4;
-USE `tienda_online`;
+USE `tienda_victor_sanantonio_sanmartin`;
 
 CREATE TABLE `productos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
