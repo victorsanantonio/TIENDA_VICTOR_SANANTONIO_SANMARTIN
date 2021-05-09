@@ -9,8 +9,8 @@ CREATE TABLE `productos` (
   `descripcion` varchar(255),
   `precio` double,
   `stock` int,
-  `fecha_alta` timestamp,
-  `fecha_baja` timestamp,
+  `fecha_alta` date,
+  `fecha_baja` date,
   `impuesto` float
 );
 
@@ -96,8 +96,8 @@ CREATE TABLE `descuentos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `codigo` varchar(255),
   `descuento` float,
-  `fecha_inicio` timestamp,
-  `fecha_fin` timestamp
+  `fecha_inicio` date,
+  `fecha_fin` date
 );
 
 CREATE TABLE `impuestos` (
