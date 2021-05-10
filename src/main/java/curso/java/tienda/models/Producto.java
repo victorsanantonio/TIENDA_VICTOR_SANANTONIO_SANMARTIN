@@ -2,11 +2,17 @@ package curso.java.tienda.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.CreatedDate;
+
+@Entity
 public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +28,13 @@ public class Producto {
 	
 	@Size(max=11, message="No puedes introducir más de 11 productos")
 	private int stock;
+	
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_alta;
+	
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_baja;
 	private float impuesto;
 	
