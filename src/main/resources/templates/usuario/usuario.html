@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lista Usuarios</title>
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{/css/list.css}" rel="stylesheet">
+	</head>
+	<body>		
+		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+		<div class="container bootstrap snippets bootdey">
+		    <div class="row">
+		        <div class="col-lg-12">
+		            <div class="no-header clearfix">
+		                <div class="main-box-body clearfix">
+		                    <div class="table-responsive">
+		                    
+		                    <button style="margin:2%;" class="btn btn-success">Añadir</button>
+		                    <hr>
+		                        <table class="table user-list table-striped">
+		                            <thead>
+		                                <tr>
+		                                <th class="text-center"><span>Id</span></th>
+		                                <th class="text-center"><span>Rol</span></th>
+		                                <th class="text-center"><span>Email</span></th>
+		                                <th class="text-center"><span>Clave</span></th>
+		                                <th class="text-center"><span>Nombre</span></th>
+		                                <th class="text-center"><span>Primer Apellido</span></th>
+		                                <th class="text-center"><span>Segundo Apellido</span></th>
+		                                <th class="text-center"><span>Direccion</span></th>
+		                                <th class="text-center"><span>Localidad</span></th>
+		                                <th class="text-center"><span>Provincia</span></th>
+		                                <th class="text-center"><span>Telefono</span></th>
+		                                <th class="text-center"><span>DNI</span></th>
+		                                <th>&nbsp;</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody class="text-center">
+		                                <tr th:each="usuario : ${usuarios}">
+		                                    <td>
+		                                        <a class="text-center" th:text="${usuario.id}">ID</a>
+		                                    </td>
+		                                    <div th:each="rol : ${roles}">
+		                                    	<td th:if="${rol.id == usuario.rol}" th:text="${rol.rol}">Rol</td>
+		                                    </div>
+		                                    <td class="text-center">
+		                                        <span class="label" th:text="${usuario.email}">Email</span>
+		                                    </td>
+		                                    <td>
+		                                        <a th:text="${usuario.clave}">Clave</a>
+		                                    </td>
+		                                    <td>
+		                                        <a th:text="${usuario.nombre}">Nombre</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.apellido1}">Primer Apellido</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.apellido2}">Segundo Apelldido</a>
+		                                    </td>
+		                                    <td>
+		                                        <a th:text="${usuario.direccion}">Direccion</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.localidad}">Localidad</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.provincia}">Provincia</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.telefono}">Telefono</a>
+		                                    </td>
+		                                    <td>
+		                                        <a  th:text="${usuario.dni}">DNI</a>
+		                                    </td>
+		                                    <td style="width: 10%;">
+		                                        <a href="#" class="table-link text-info">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
+		                                        <a href="#" class="table-link danger">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</body>
+</html>

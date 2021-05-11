@@ -18,7 +18,7 @@ import curso.java.tienda.models.Usuarios;
 import curso.java.tienda.services.UsuarioService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
@@ -27,7 +27,7 @@ public class LoginController {
 	@GetMapping("/acceso")
 	public String acceso() {
 		
-		return "login/login";
+		return "login";
 	}
 	
 	@PostMapping("/acceso/validar")

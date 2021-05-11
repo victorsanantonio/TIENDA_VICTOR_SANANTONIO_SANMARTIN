@@ -22,11 +22,6 @@ public class ProductoService {
 		return repository.findById(id);
 	}
 	
-//	public Iterable<Productos> getAllCategory(int id){
-//		
-//		return repository.findByIdCategoria(id);
-//	}
-	
 	public void deleteProducto(int id) {
 		repository.deleteById((long)id);
 	}
