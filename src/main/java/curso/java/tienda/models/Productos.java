@@ -2,6 +2,7 @@ package curso.java.tienda.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,25 +20,33 @@ public class Productos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Column(nullable = true)
 	private int id_categoria;
 	
-	@Size(max=255, message="El nombre no debe de superar los 255 dígitos")
+	//@Size(max=255, message="El nombre no debe de superar los 255 dígitos")
+	@Column(nullable = true)
 	private String nombre;
 	
-	@Size(max=255, message="La descripción no debe de superar los 255 dígitos")
+	//@Size(max=255, message="La descripción no debe de superar los 255 dígitos")
+	@Column(nullable = true)
 	private String descripcion;
+	@Column(nullable = true)
 	private double precio;
 	
-	@Size(max=11, message="No puedes introducir más de 11 productos")
+	//@Size(max=11, message="No puedes introducir más de 11 productos")
+	@Column(nullable = true)
 	private int stock;
 	
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
 	private Date fecha_alta;
 	
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
 	private Date fecha_baja;
+	@Column(nullable = true)
 	private float impuesto;
 	
 	public Productos() {}
