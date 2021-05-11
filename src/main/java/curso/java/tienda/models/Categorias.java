@@ -1,11 +1,15 @@
 package curso.java.tienda.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-public class Categoria {
+@Entity
+@Table(name = "categorias")
+public class Categorias {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,9 +21,9 @@ public class Categoria {
 	@Size(max=255, message="La descripción no debe de superar los 255 dígitos")
 	private String descripcion;
 	
-	public Categoria() {}
+	public Categorias() {}
 
-	public Categoria(int id, String nombre, String descripcion) {
+	public Categorias(int id, String nombre, String descripcion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

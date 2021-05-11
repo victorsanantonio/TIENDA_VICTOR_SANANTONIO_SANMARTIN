@@ -9,5 +9,4 @@ import curso.java.tienda.models.Productos;
 
 
 public interface ProductoRepository extends JpaRepository<Productos, Long> {
-	List<Productos> findByNombre(String nombre);
 }

@@ -13,13 +13,13 @@ import curso.java.tienda.models.Productos;
 import curso.java.tienda.services.ProductoService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/producto")
 public class ProductoController {
 
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping("")
+	@GetMapping("/producto")
 	public String listarProductos(Model model) {
 		model.addAttribute("productos", productoService.getListaProductos());
 		return "index";
