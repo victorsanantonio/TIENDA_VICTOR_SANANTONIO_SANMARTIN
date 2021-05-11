@@ -1,13 +1,13 @@
 package curso.java.tienda.repository;
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import curso.java.tienda.models.Producto;
+import curso.java.tienda.models.Productos;
 
 
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
-	
+public interface ProductoRepository extends JpaRepository<Productos, Long> {
+	List<Productos> findByNombre(String nombre);
 }

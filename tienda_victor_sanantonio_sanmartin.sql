@@ -109,3 +109,6 @@ CREATE TABLE `metodos_pago` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `metodo_pago` varchar(255)
 );
+
+INSERT INTO Productos(descripcion)
+	VALUES('Descripción');

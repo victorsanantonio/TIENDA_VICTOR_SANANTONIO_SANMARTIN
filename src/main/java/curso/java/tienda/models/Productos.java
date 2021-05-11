@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-public class Producto {
+public class Productos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -38,9 +38,9 @@ public class Producto {
 	private Date fecha_baja;
 	private float impuesto;
 	
-	public Producto() {}
+	public Productos() {}
 	
-	public Producto(int id, int id_categoria, String nombre, String descripcion, double precio, int stock,
+	public Productos(int id, int id_categoria, String nombre, String descripcion, double precio, int stock,
 			Date fecha_alta, Date fecha_baja, float impuesto) {
 		super();
 		this.id = id;

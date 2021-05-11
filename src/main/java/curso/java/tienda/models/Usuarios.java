@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class Usuarios {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +22,9 @@ public class Usuario {
 	private String telefono;
 	private String dni;
 	
-	public Usuario() {}
+	public Usuarios() {}
 	
-	public Usuario(int id_rol, String email, String clave, String nombre, String apellido1, String apellido2,
+	public Usuarios(int id_rol, String email, String clave, String nombre, String apellido1, String apellido2,
 			String direccion, String localidad, String telefono, String dni) {
 		super();
 		this.id_rol = id_rol;
@@ -153,7 +153,7 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Usuarios other = (Usuarios) obj;
 		if (apellido1 == null) {
 			if (other.apellido1 != null)
 				return false;
