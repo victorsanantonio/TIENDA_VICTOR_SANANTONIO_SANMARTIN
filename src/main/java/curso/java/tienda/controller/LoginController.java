@@ -24,32 +24,30 @@ public class LoginController {
 	@Autowired
 	private UsuarioService us;
 
-	@GetMapping("/login")
+	@GetMapping("/acceso")
 	public String acceso() {
-
-		return "/login";
+		
+		return "login/login";
 	}
-
+	
 	@PostMapping("/acceso/validar")
-	public String validarAcceso(HttpSession sesion, Model model, @RequestParam(required = true) String login,
-			@RequestParam(required = true) String password) {
-
-		Usuarios usuario = us.validarLogin(login, password);
-		sesion.setAttribute("usuario", usuario);
-
-		if (usuario != null) {
-			// sesion.setAttribute("opcionesMenu", oms.getByIdRol(usuario.getRol()));
-
-			/*
-			 * ArrayList<Productos> carrito = new ArrayList<Productos>();
-			 * sesion.setAttribute("carrito", carrito);
-			 */
-
+	public String validarAcceso(HttpSession sesion, Model model, @RequestParam(required = true) String login, @RequestParam(required = true) String password) {
+		
+		Usuarios user = us.validarLogin(login, password);
+		sesion.setAttribute("usuario", user);
+		
+		if(user != null) {
+			
+			//sesion.setAttribute("opcionesMenu", oms.getByIdRol(user.getRol()));
+			
 			return "redirect:/";
-
-		} else {
-
+			
+		}else {
+			
 			return "redirect:/login/acceso";
 		}
+		
+		
+		
 	}
 }
