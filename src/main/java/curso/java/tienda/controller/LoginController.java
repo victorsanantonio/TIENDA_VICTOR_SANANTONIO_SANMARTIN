@@ -18,7 +18,7 @@ import curso.java.tienda.models.Usuarios;
 import curso.java.tienda.services.UsuarioService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class LoginController {
 
 	@Autowired

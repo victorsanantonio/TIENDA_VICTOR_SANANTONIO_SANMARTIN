@@ -19,9 +19,11 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping("/producto")
-	public String listarProductos(Model model) {
-		model.addAttribute("productos", productoService.getListaProductos());
-		return "index";
+	@GetMapping("/listar")
+	public String listar(Model model) {
+		
+		model.addAttribute("productos", productoService.getAll());
+		
+		return "productos/list";
 	}
 }

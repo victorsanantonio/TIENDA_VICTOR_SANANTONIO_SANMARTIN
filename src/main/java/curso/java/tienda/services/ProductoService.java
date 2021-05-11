@@ -10,14 +10,29 @@ import curso.java.tienda.repository.ProductoRepository;
 @Service
 public class ProductoService {
 
-    @Autowired
-    private ProductoRepository productoRepository;
-
-    public Iterable getListaProductos() {
-        return productoRepository.findAll();
+	@Autowired
+	private ProductoRepository repository;
+	
+	public Iterable<Productos> getAll() {
+        return repository.findAll();
     }
-
-    public void addProducto(Productos producto) {
-        productoRepository.save(producto);
-    }
+	
+	public Productos getProducto(int id) {
+		
+		return repository.findById(id);
+	}
+	
+//	public Iterable<Productos> getAllCategory(int id){
+//		
+//		return repository.findByIdCategoria(id);
+//	}
+	
+	public void deleteProducto(int id) {
+		repository.deleteById((long)id);
+	}
+	
+	public void addProducto(Productos producto) {
+		
+		repository.save(producto);
+	}
 }
