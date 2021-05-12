@@ -33,18 +33,19 @@ public class UsuarioService {
 				System.out.print("Usuario es correcto");
 				return user;
 			}
-
 		}
 		else {
 			System.out.print("El usuario no es correcto");
 		}
-
-		user = null;
-		return user;
+		return null;
 	}
 
 	public void addUsuario(Usuarios usuario) {
 		usuario.setClave(encrypter.encryptedPassword(usuario.getClave()));
 		repository.save(usuario);
+	}
+	
+	public void deleteUsuario(int id) {
+		repository.deleteById(id);
 	}
 }
