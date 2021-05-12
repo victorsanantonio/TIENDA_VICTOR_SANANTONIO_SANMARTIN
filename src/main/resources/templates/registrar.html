@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Tienda Online</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/registrar.css}">
+</head>
+<body>
+	<header th:include="/fragments/navigation.html::header"> </header>
+	<div style="background-color: #eee;" id="contenedor"
+		class="page-wrapper p-t-130 p-b-100 font-poppins">
+		<div class="wrapper wrapper--w680">
+			<div class="card card-4">
+				<div class="card-body">
+					<h2 class="title row">Registrarse</h2>
+					<form th:action="@{/registrar/submit}" th:object="${usuario}"
+						method="post">
+						<input type="hidden" name="id" th:if="${usuario!=null}"
+							th:value="${usuario.id}">
+						<div class="row row-space">
+							<div class="col-1">
+								<div class="input-group">
+									<label for="nombre" class="label">Email</label> <input
+										class="input--style-4" type="email" name="email"
+										th:if="${usuario!=null}" th:value="${usuario.email}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="clave" class="label">Clave</label> <input
+										class="input--style-4" type="password" name="clave"
+										th:if="${usuario!=null}" th:value="${usuario.clave}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="nombre" class="label">Rol</label> <input
+										class="input--style-4" type="text" name="nombre"
+										th:if="${usuario!=null}" th:value="${usuario.id_rol}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="nombre" class="label">Nombre</label> <input
+										class="input--style-4" type="text" name="nombre"
+										th:if="${usuario!=null}" th:value="${usuario.nombre}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="apellido1" class="label">Apellido 1</label> <input
+										class="input--style-4" type="text" name="apellido1"
+										th:if="${usuario!=null}" th:value="${usuario.apellido1}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="apellido2" class="label">Apellido 2</label> <input
+										class="input--style-4" type="text" name="apellido2"
+										th:if="${usuario!=null}" th:value="${usuario.apellido2}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="direccion" class="label">Dirección</label> <input
+										class="input--style-4" type="text" name="direccion"
+										th:if="${usuario!=null}" th:value="${usuario.direccion}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="localidad" class="label">Localidad</label> <input
+										class="input--style-4" type="text" name="localidad"
+										th:if="${usuario!=null}" th:value="${usuario.localidad}">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="provincia" class="label">Provincia</label> <input
+										class="input--style-4" type="text" name="provincia">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="telefono" class="label">Teléfono</label> <input
+										class="input--style-4" type="text" name="telefono">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="input-group">
+									<label for="dni" class="label">DNI</label> <input
+										class="input--style-4" type="text" name="dni">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button style="width: 100%;"
+								class="btn btn--radius-2 btn-outline-primary btn-lg"
+								type="submit" th:if="${usuario!=null}" th:value="registrar">Registrarse</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/fragments/footer.html::footer"></footer>
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,15 +16,14 @@ import curso.java.tienda.models.Usuarios;
 import curso.java.tienda.services.UsuarioService;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("")
 public class LoginController {
 
 	@Autowired
 	private UsuarioService us;
 
-	@GetMapping("")
+	@GetMapping("login")
 	public String acceso() {
-		
 		return "login";
 	}
 	
@@ -41,4 +41,15 @@ public class LoginController {
 		}
 	}
 	
+	@GetMapping("registrar")
+	public String registrar(Model model) {
+		model.addAttribute("usuario", new Usuarios());
+		return "registrar";
+	}
+	
+	@PostMapping("/registrar/submit")
+	public String addSubmit(Model model, @ModelAttribute Usuarios usuario) {
+		us.addUsuario(usuario);
+		return "redirect:/login";
+	}
 }

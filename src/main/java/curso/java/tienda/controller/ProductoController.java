@@ -21,14 +21,14 @@ import curso.java.tienda.services.ProductoService;
 @RequestMapping("")
 public class ProductoController {
 
+	List<Productos> carrito = new ArrayList<>();
+	
 	@Autowired
 	private ProductoService productoService;
 
 	@GetMapping("")
 	public String listar(HttpSession sesion, Model model) {
-
 		model.addAttribute("productos", productoService.getAll());
-		
 		List<Productos> carrito = new ArrayList<>();
 		sesion.setAttribute("carrito", carrito);
 		
@@ -37,7 +37,7 @@ public class ProductoController {
 		}
 		return "index";
 	}
-
+	
 	/*
 	 * @GetMapping("/prueba") public String metodo2(HttpSession sesion) { String
 	 * nombre = (String)sesion.getAttribute("nombre"); System.out.println(nombre);

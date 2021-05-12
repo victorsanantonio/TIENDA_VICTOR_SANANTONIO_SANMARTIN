@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Carrito</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<header th:include="/fragments/navigation.html::header"> </header>
+	<hr>
+
+	<a th:href="@{/carrito/anhadir}">Añadir producto</a>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th class="text-center"><span>Id</span></th>
+				<th class="text-center"><span>Categoría</span></th>
+				<th class="text-center"><span>Nombre</span></th>
+				<th class="text-center"><span>Descripción</span></th>
+				<th class="text-center"><span>Precio</span></th>
+				<th class="text-center"><span>Stock</span></th>
+				<th class="text-center"><span>Fecha alta</span></th>
+				<th class="text-center"><span>Fecha baja</span></th>
+				<th class="text-center"><span>Impuesto</span></th>
+			</tr>
+		</thead>
+		<tbody class="text-center">
+			<tr th:each="producto : ${session.carrito}">
+				<td><a class="text-center" th:text="${producto.id}">ID</a></td>
+				<td class="text-center">
+				<td><a th:text="${producto.categoria}">Categoría</a></td>
+				<td><a th:text="${producto.nombre}">Nombre</a></td>
+				<td><a th:text="${producto.descripcion}">Descripción</a></td>
+				<td><a th:text="${producto.precio}">Precio</a></td>
+				<td><a th:text="${producto.stock}">Stock</a></td>
+				<td><a th:text="${producto.fecha_baja}">Fecha baja</a></td>
+				<td><a th:text="${producto.fecha_alta}">Fecha alta</a></td>
+				<td><a th:text="${producto.impuesto}">Impuesto</a></td>
+				<td style="width: 10%;">
+					<p>
+						<a th:href="@{producto/baja/{id}(id=${producto.id})}">Eliminar</a>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<footer th:replace="/fragments/footer.html::footer"></footer>
+</body>
+</html>
