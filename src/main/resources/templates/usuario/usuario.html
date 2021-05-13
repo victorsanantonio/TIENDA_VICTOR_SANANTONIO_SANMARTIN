@@ -8,9 +8,8 @@
 <body>
 	<header th:include="/fragments/navigation.html::header"> </header>
 	<hr>
-
+	<h1>Usuarios</h1>
 	<a th:href="@{/usuario/anhadir}">Añadir</a>
-
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -42,7 +41,8 @@
 				<td><a th:text="${usuario.dni}">DNI</a></td>
 				<td style="width: 10%;">
 					<p>
-						<a th:href="@{usuario/editar/{id}(id=${usuario.id})}">Editar</a> <a th:href="@{usuario/baja/{id}(id=${usuario.id})}">Eliminar</a>
+						<a th:href="@{usuario/editar/{id}(id=${usuario.id})}">Editar</a> <a
+							th:href="@{usuario/baja/{id}(id=${usuario.id})}">Eliminar</a>
 					</p>
 				</td>
 			</tr>
