@@ -68,7 +68,7 @@ public class CarritoController {
 		ArrayList<Productos> productos = (ArrayList<Productos>) sesion.getAttribute("carrito");
 		//String metodo_pago = (String) sesion.getAttribute("metodo_pago");
 		String metodo_pago = "PayPal";
-		Pedido pedido = new Pedido(1, usuario.getId(), new Date(), metodo_pago, "pedido", "000001", total);
+		Pedido pedido = new Pedido(1, usuario.getId(), new Date(), metodo_pago, "Pedido", "000001", total);
 		pedidoService.addPedido(pedido);
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		pedidos.add(pedido);
