@@ -1,8 +1,13 @@
 package curso.java.tienda.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +32,23 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
+	public void obtenerImagen() {
+		for(Productos p : productoService.getAll()) {
+			establecerImagenAlmacenada(p.getImagen());
+		}
+	}
+	
+	private void establecerImagenAlmacenada(byte[] imagenBArray) {
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(imagenBArray);
+            BufferedImage bi = ImageIO.read(bais);
+            File f = new File("src/main/resources/static/images/imagen_producto.jpg");
+            ImageIO.write(bi, "jpg", f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+	
 	@GetMapping("")
 	public String listar(HttpSession sesion, Model model) {
 		model.addAttribute("productos", productoService.getAll());

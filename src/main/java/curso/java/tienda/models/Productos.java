@@ -48,11 +48,13 @@ public class Productos {
 	private Date fecha_baja;
 	@Column(nullable = true)
 	private float impuesto;
+	@Column(nullable=true)
+	private byte[] imagen;
 	
 	public Productos() {}
 	
 	public Productos(int id, int id_categoria, String nombre, String descripcion, double precio, int stock,
-			Date fecha_alta, Date fecha_baja, float impuesto) {
+			Date fecha_alta, Date fecha_baja, float impuesto, byte[] imagen) {
 		super();
 		this.id = id;
 		this.id_categoria = id_categoria;
@@ -63,6 +65,7 @@ public class Productos {
 		this.fecha_alta = fecha_alta;
 		this.fecha_baja = fecha_baja;
 		this.impuesto = impuesto;
+		this.imagen = imagen;
 	}
 
 	public int getId() {
@@ -135,6 +138,14 @@ public class Productos {
 
 	public void setImpuesto(float impuesto) {
 		this.impuesto = impuesto;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
 	}
 
 	@Override
