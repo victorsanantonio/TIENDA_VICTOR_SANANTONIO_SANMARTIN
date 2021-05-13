@@ -27,9 +27,10 @@ public class LoginController {
 		return "login";
 	}
 	
-	@PostMapping("/acceso/validar")
+	@PostMapping("/login/acceso/validar")
 	public String validarAcceso(HttpSession sesion, Model model, @RequestParam(required = true) String username, @RequestParam(required = true) String password) {
-		Usuarios user = us.validarLogin(username, password);
+		Usuarios user = null;
+		user = us.validarLogin(username, password);
 		//sesion.setAttribute("usuario", user);
 		sesion.setAttribute("nombre", username);
 		

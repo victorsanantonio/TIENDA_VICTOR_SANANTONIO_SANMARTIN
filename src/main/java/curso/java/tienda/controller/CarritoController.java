@@ -1,6 +1,7 @@
 package curso.java.tienda.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,61 +17,56 @@ import curso.java.tienda.models.Productos;
 import curso.java.tienda.models.Usuarios;
 import curso.java.tienda.services.CarritoService;
 import curso.java.tienda.services.ProductoService;
+import curso.java.tienda.services.UsuarioService;
 
 @Controller
 @RequestMapping("/carrito")
 public class CarritoController {
-	
+	double total = 0d;
 	@Autowired
 	private ProductoService ps;
 	@Autowired
 	private CarritoService cs;
-	
-	@GetMapping("/carrito")
+	@Autowired
+	private UsuarioService us;
+
+	@GetMapping("")
 	public String listar(HttpSession sesion, Model model) {
-		if(sesion.getAttribute("carrito") == null) {
-			sesion.setAttribute("carrito",new ArrayList<Productos>());
+		ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
+
+		if (carrito == null) {
+			sesion.setAttribute("carrito", new ArrayList<Productos>());
 		}
-		model.addAttribute("total", cs.total( (ArrayList<Productos>) sesion.getAttribute("carrito")) + " €");
+
+		total = cs.total(carrito);
+		model.addAttribute("total", total + " €");
 		return "carrito/carrito";
 	}
-	
-	@GetMapping("/anhadir/{id}")
-	public String add(HttpSession sesion, Model model,@PathVariable("id") int id) {
-		ArrayList<Productos> carrito = null;
-		if(sesion.getAttribute("carrito") != null) {
-			carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
-			carrito.add(ps.getProducto(id));
-		}else {
-			carrito = new ArrayList<Productos>();
-			carrito.add(ps.getProducto(id));
-		}
-		sesion.setAttribute("carrito", carrito);
-		return "redirect:/";
-	}
-	
+
 	@GetMapping("/borrar/{id}")
 	public String delete(HttpSession sesion, Model model, @PathVariable("id") int id) {
-		
+
 		ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
-		for(int i = 0; i < carrito.size(); i++) {
+		for (int i = 0; i < carrito.size(); i++) {
 			Productos p = carrito.get(i);
-			if(p.getId() == id) {
+			if (p.getId() == id) {
 				carrito.remove(p);
 			}
 		}
-		return "redirect:/carrito/carrito";
+		return "redirect:/carrito";
 	}
-	
-	@GetMapping("/pedido")
-	public String pedido(HttpSession sesion, Model model, @RequestParam String pago) {
-		Usuarios user = (Usuarios) sesion.getAttribute("usuario");
-		if(user != null) {
-			ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
-			sesion.setAttribute("carrito", new ArrayList<Productos>());
-			return "pedidos/pagado";
-		}
+
+	@GetMapping("/carrito")
+	public String compra(HttpSession sesion, Model model) {
+		String email = (String) sesion.getAttribute("nombre");
+		Usuarios usuario = us.getUsuario(email);
 		
-		return "redirect:/login/acceso";
+		ArrayList<Productos> productos = (ArrayList<Productos>) sesion.getAttribute("carrito");
+		//String metodo_pago = (String) sesion.getAttribute("metodo_pago");
+		String metodo_pago = "PayPal";
+		Pedido pedido = new Pedido(1, usuario.getId(), new Date(), metodo_pago, "pedido", "000001", total);
+		sesion.setAttribute("carrito",null);
+		ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
+		return "redirect:/";
 	}
 }

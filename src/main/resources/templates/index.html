@@ -67,7 +67,7 @@
 								src="https://via.placeholder.com/700x400" alt="..." /></a>
 							<div class="card-body">
 								<h4 class="card-title">
-									<a th:text="${producto.nombre}" href="#!">Item One</a>
+									<a th:text="${producto.nombre}">Item One</a>
 								</h4>
 								<h5 th:text="${producto.precio}">$24.99</h5>
 								<p th:text="${producto.descripcion}" class="card-text">Lorem ipsum dolor sit amet, consectetur
@@ -75,6 +75,7 @@
 							</div>
 							<div class="card-footer">
 								<small class="text-muted">★ ★ ★ ★ ☆</small>
+								<a th:href="@{anhadir/{id}(id=${producto.id})}">Añadir al carrito</a>
 							</div>
 						</div>
 					</div>

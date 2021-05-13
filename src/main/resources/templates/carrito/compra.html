@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compra</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/registrar.css}">
+</head>
+<body>
+	<header th:include="/fragments/navigation.html::header"> </header>
+	<hr>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="flexRadioDefault"
+			id="flexRadioDefault1"> <label class="form-check-label"
+			for="flexRadioDefault1"> PayPal </label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="flexRadioDefault"
+			id="flexRadioDefault2" checked> <label
+			class="form-check-label" for="flexRadioDefault2"> Tarjeta </label>
+	</div>
+
+	<form method="get">
+		<button style="width: 100%;"
+			class="btn btn--radius-2 btn-outline-primary btn-lg" type="submit">Pagar</button>
+	</form>
+	<footer th:replace="/fragments/footer.html::footer"></footer>
+</body>
+</html>

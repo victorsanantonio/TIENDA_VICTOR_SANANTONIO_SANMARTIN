@@ -2,15 +2,13 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Lista Usuarios</title>
+<title>Pedidos</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
 	<header th:include="/fragments/navigation.html::header"> </header>
 	<hr>
-
-	<a th:href="@{/usuario/anhadir}">Añadir</a>
-
+	<h1>Pedidos</h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -42,7 +40,7 @@
 				<td><a th:text="${usuario.dni}">DNI</a></td>
 				<td style="width: 10%;">
 					<p>
-						<a th:href="@{usuario/editar/{id}(id=${usuario.id})}">Editar</a> <a th:href="@{usuario/baja/{id}(id=${usuario.id})}">Eliminar</a>
+						<a th:href="@{usuario/baja/{id}(id=${usuario.id})}">Eliminar</a>
 					</p>
 				</td>
 			</tr>

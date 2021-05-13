@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <title>Carrito</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/css/registrar.css}">
 </head>
 <body>
 	<header th:include="/fragments/navigation.html::header"> </header>
 	<hr>
-	<p class="text-center" th:text="${total}">ID</p>
+
+	<a th:href="@{/carrito/anhadir}">Añadir producto</a>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th class="text-center"><span>Id</span></th>
+				<th class="text-center"><span>Categoría</span></th>
 				<th class="text-center"><span>Nombre</span></th>
 				<th class="text-center"><span>Descripción</span></th>
 				<th class="text-center"><span>Precio</span></th>
@@ -25,7 +27,9 @@
 		</thead>
 		<tbody class="text-center">
 			<tr th:each="producto : ${session.carrito}">
-				<td><p class="text-center" th:text="${producto.id}">ID</p></td>
+				<td><a class="text-center" th:text="${producto.id}">ID</a></td>
+				<td class="text-center">
+				<td><a th:text="${producto.categoria}">Categoría</a></td>
 				<td><a th:text="${producto.nombre}">Nombre</a></td>
 				<td><a th:text="${producto.descripcion}">Descripción</a></td>
 				<td><a th:text="${producto.precio}">Precio</a></td>
@@ -35,24 +39,12 @@
 				<td><a th:text="${producto.impuesto}">Impuesto</a></td>
 				<td style="width: 10%;">
 					<p>
-						<a th:href="@{carrito/borrar/{id}(id=${producto.id})}">Eliminar</a>
+						<a th:href="@{producto/baja/{id}(id=${producto.id})}">Eliminar</a>
 					</p>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<!-- Llevar a formulario de login... -->
-	<form method="get" th:if="${session.nombre}==''" action="/login">
-		<button style="width: 100%;"
-								class="btn btn--radius-2 btn-outline-primary btn-lg" type="submit">Comprar</button>
-	</form>
-	
-	<!-- Llevar a formulario de compra-->
-	<form method="get" th:if="${session.nombre}!=''" action="/carrito/carrito">
-		<button style="width: 100%;"
-								class="btn btn--radius-2 btn-outline-primary btn-lg" type="submit">Comprar</button>
-	</form>
 	<footer th:replace="/fragments/footer.html::footer"></footer>
 </body>
 </html>
