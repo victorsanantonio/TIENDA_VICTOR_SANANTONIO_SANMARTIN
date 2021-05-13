@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import curso.java.tienda.models.Pedido;
 import curso.java.tienda.models.Productos;
 import curso.java.tienda.models.Usuarios;
 import curso.java.tienda.services.CarritoService;
+import curso.java.tienda.services.PedidoService;
 import curso.java.tienda.services.ProductoService;
 import curso.java.tienda.services.UsuarioService;
 
@@ -29,6 +31,8 @@ public class CarritoController {
 	private CarritoService cs;
 	@Autowired
 	private UsuarioService us;
+	@Autowired
+	private PedidoService pedidoService;
 
 	@GetMapping("")
 	public String listar(HttpSession sesion, Model model) {
@@ -65,6 +69,10 @@ public class CarritoController {
 		//String metodo_pago = (String) sesion.getAttribute("metodo_pago");
 		String metodo_pago = "PayPal";
 		Pedido pedido = new Pedido(1, usuario.getId(), new Date(), metodo_pago, "pedido", "000001", total);
+		pedidoService.addPedido(pedido);
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		pedidos.add(pedido);
+		sesion.setAttribute("pedidos", pedidos);
 		sesion.setAttribute("carrito",null);
 		ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
 		return "redirect:/";

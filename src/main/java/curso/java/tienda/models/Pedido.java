@@ -1,4 +1,4 @@
-package curso.java.tienda.controller;
+package curso.java.tienda.models;
 
 import java.util.Date;
 

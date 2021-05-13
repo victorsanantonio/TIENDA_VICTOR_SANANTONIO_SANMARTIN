@@ -12,35 +12,23 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="text-center"><span>Id</span></th>
-				<th class="text-center"><span>Email</span></th>
-				<th class="text-center"><span>Clave</span></th>
-				<th class="text-center"><span>Nombre</span></th>
-				<th class="text-center"><span>Primer Apellido</span></th>
-				<th class="text-center"><span>Segundo Apellido</span></th>
-				<th class="text-center"><span>Direccion</span></th>
-				<th class="text-center"><span>Localidad</span></th>
-				<th class="text-center"><span>Telefono</span></th>
-				<th class="text-center"><span>DNI</span></th>
-				<th class="text-center"><span>Operar</span>
+				<th class="text-center"><span>Fecha</span></th>
+				<th class="text-center"><span>Método de pago</span></th>
+				<th class="text-center"><span>Estado</span></th>
+				<th class="text-center"><span>Nº Factura</span></th>
+				<th class="text-center"><span>Total</span></th>
 			</tr>
 		</thead>
 		<tbody class="text-center">
-			<tr th:each="usuario : ${usuarios}">
-				<td><a class="text-center" th:text="${usuario.id}">ID</a></td>
-				<td class="text-center"><span class="label"
-					th:text="${usuario.email}">Email</span></td>
-				<td><a th:text="${usuario.clave}">Clave</a></td>
-				<td><a th:text="${usuario.nombre}">Nombre</a></td>
-				<td><a th:text="${usuario.apellido1}">Primer Apellido</a></td>
-				<td><a th:text="${usuario.apellido2}">Segundo Apelldido</a></td>
-				<td><a th:text="${usuario.direccion}">Direccion</a></td>
-				<td><a th:text="${usuario.localidad}">Localidad</a></td>
-				<td><a th:text="${usuario.telefono}">Telefono</a></td>
-				<td><a th:text="${usuario.dni}">DNI</a></td>
+			<tr th:each="pedido : ${pedidos}">
+				<td><a th:text="${pedido.fecha}">Fecha</a></td>
+				<td><a th:text="${pedido.metodo_pago}">Método de pago</a></td>
+				<td><a th:text="${pedido.estado}">Estado</a></td>
+				<td><a th:text="${pedido.num_factura}">Nº Factura</a></td>
+				<td><a th:text="${pedido.total}">Total</a></td>
 				<td style="width: 10%;">
 					<p>
-						<a th:href="@{usuario/baja/{id}(id=${usuario.id})}">Eliminar</a>
+						<a th:href="@{pedido/eliminar/{id}(id=${pedido.id})}">Eliminar</a>
 					</p>
 				</td>
 			</tr>
